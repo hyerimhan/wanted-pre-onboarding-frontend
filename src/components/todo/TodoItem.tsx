@@ -6,9 +6,10 @@ import { styled } from 'styled-components'
 interface ITodoItem {
   data: ITodo
   onComplete?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onDelete?: () => void
 }
 
-const TodoItem = ({ data, onComplete }: ITodoItem) => {
+const TodoItem = ({ data, onComplete, onDelete }: ITodoItem) => {
   return (
     <TodoItemStyle>
       <label htmlFor={data.id.toString()}>
@@ -31,6 +32,7 @@ const TodoItem = ({ data, onComplete }: ITodoItem) => {
           dataTestid='delete-button'
           text='삭제'
           bgcolor='red'
+          onClick={onDelete}
         />
       </ButtonsStyle>
     </TodoItemStyle>
