@@ -78,7 +78,7 @@ const AuthStyle = styled.div`
   }
 `
 
-const FormStyle = styled.form`
+export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
