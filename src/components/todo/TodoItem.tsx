@@ -23,10 +23,12 @@ const TodoItem = ({ data, onComplete }: ITodoItem) => {
       </label>
       <ButtonsStyle>
         <Button
+          dataTestid='modify-button'
           text='수정'
           bgcolor='#909090'
         />
         <Button
+          dataTestid='delete-button'
           text='삭제'
           bgcolor='red'
         />
