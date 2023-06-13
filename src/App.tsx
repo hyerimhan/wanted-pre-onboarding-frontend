@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
 import RedirectRoute from 'routes/RedirectRoute'
 import { createGlobalStyle } from 'styled-components'
-import { Reset } from 'styled-reset'
+import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
   * {
     box-sizing: border-box;
     margin: 0;
@@ -38,7 +39,6 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <Reset />
       <GlobalStyle />
       <RedirectRoute />
       <Outlet />
