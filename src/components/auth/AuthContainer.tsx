@@ -2,6 +2,7 @@ import { SIGNUP } from 'apis/auth'
 import { IAuth, IAuthValid, IAuthValidError } from 'interfaces/auth'
 import React, { useState, useEffect } from 'react'
 import AuthContainerPresenter from './AuthContainer.presenter'
+import { useNavigate } from 'react-router-dom'
 
 interface IAuthContainer {
   title: string
@@ -9,6 +10,7 @@ interface IAuthContainer {
 }
 
 const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
+  const navigate = useNavigate()
   const [form, setForm] = useState<IAuth>({
     email: '',
     password: '',
@@ -80,6 +82,7 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
         password: form.password,
       })
       alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.')
+      navigate('/signin')
     } catch (error: any) {
       alert(error.response.data.message)
     } finally {
