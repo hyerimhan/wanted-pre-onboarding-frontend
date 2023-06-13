@@ -2,32 +2,32 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface IButton {
-  buttonType?: string
+  buttontype?: string
   type?: 'button' | 'submit'
   text: string
   dataTestid?: string
-  bgColor?: string
+  bgcolor?: string
   color?: string
   isDisabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const Button = ({
-  buttonType = 'primaryType',
+  buttontype = 'primaryType',
   type = 'button',
   text,
   dataTestid,
-  bgColor = '',
+  bgcolor = '',
   color = '',
   isDisabled = false,
   onClick,
 }: IButton) => {
   return (
     <ButtonStyle
-      buttonType={buttonType}
+      buttontype={buttontype}
       type={type}
       data-testid={dataTestid}
-      bgColor={bgColor}
+      bgcolor={bgcolor}
       color={color}
       disabled={isDisabled}
       onClick={onClick}
@@ -40,22 +40,22 @@ const Button = ({
 export default Button
 
 const ButtonStyle = styled.button<{
-  buttonType: string
-  bgColor: string
+  buttontype: string
+  bgcolor: string
   disabled: boolean
 }>`
   height: 50px;
   padding: 0 50px;
-  ${({ buttonType }) => handleButtonType(buttonType)}
-  background-color: ${({ bgColor, disabled }) =>
-    bgColor || (disabled && '#909090')};
+  ${({ buttontype }) => handleButtonType(buttontype)}
+  background-color: ${({ bgcolor, disabled }) =>
+    bgcolor || (disabled && '#909090')};
   color: ${({ color }) => color};
   border-radius: 10px;
-  cursor: ${({ disabled }) => (disabled ? 'default' : 'cursor')};
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `
 
-const handleButtonType = (buttonType: string) => {
-  switch (buttonType) {
+const handleButtonType = (buttontype: string) => {
+  switch (buttontype) {
     case 'primaryType':
       return `
         background-color: navy;
@@ -64,7 +64,7 @@ const handleButtonType = (buttonType: string) => {
     case `transparent`:
       return `
         background-color: transparent;
-        color: #000;
+        color: #000
       `
   }
 }

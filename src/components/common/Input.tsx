@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 interface IInput {
   type?: string
-  item?: string
   value?: string
-  errorMessage?: string
   placeholder?: string
   dataTestid?: string
   onChange?: React.ChangeEventHandler<HTMLInputElement>
@@ -13,26 +11,19 @@ interface IInput {
 
 const Input = ({
   type = 'text',
-  item = '',
   value,
-  errorMessage,
   placeholder,
   dataTestid,
   onChange,
 }: IInput) => {
   return (
-    <>
-      <InputStyle
-        data-testid={dataTestid}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-      />
-      {item.length > 0 && errorMessage ? (
-        <p className='inValid'>{errorMessage}</p>
-      ) : null}
-    </>
+    <InputStyle
+      data-testid={dataTestid}
+      type={type}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   )
 }
 
