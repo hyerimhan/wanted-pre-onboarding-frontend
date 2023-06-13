@@ -3,7 +3,7 @@ import { FormStyle } from 'components/auth/AuthContainer.presenter'
 import Button from 'components/common/Button'
 import Input from 'components/common/Input'
 import TodoItem from 'components/todo/TodoItem'
-import { ITodo } from 'interfaces/todo'
+import { ITodo, ITodoUpdate } from 'interfaces/todo'
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import updateTodo from 'utils/updateTodo'
@@ -11,6 +11,11 @@ import updateTodo from 'utils/updateTodo'
 const Todo = () => {
   const [todos, setTodos] = useState<ITodo[]>([])
   const [todoText, setTodoText] = useState<string>('')
+  const [todoEdit, setTodoEdit] = useState<ITodoUpdate | any>({
+    id: 1,
+    todo: '',
+    isCompleted: false,
+  })
 
   useEffect(() => {
     ;(async () => {
@@ -37,19 +42,27 @@ const Todo = () => {
     return DELETETODO(todoId)
   }
 
+  const handleEditSubmit = (editSubmit: ITodoUpdate) => {
+    updateTodo({ data: todos, setData: setTodos, editSubmit })
+    setTodoEdit(null)
+  }
+
   return (
     <TodoStyle>
-      <TodoUl>
+      <TodoUlStyle>
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             data={todo}
             onDelete={() => handleDelete(todo.id)}
             onComplete={handleComplete}
+            todoEdit={todoEdit}
+            setTodoEdit={setTodoEdit}
+            onEditSubmit={() => handleEditSubmit(todoEdit)}
           />
         ))}
         {!todos.length && '오늘의 할 일을 추가해주세요!'}
-      </TodoUl>
+      </TodoUlStyle>
       <InputAreaStyle>
         <FormStyle onSubmit={handleSubmit}>
           <Input
@@ -93,7 +106,7 @@ const TodoStyle = styled.div`
   }
 `
 
-const TodoUl = styled.ul`
+const TodoUlStyle = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
