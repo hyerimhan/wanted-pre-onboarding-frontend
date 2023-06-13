@@ -30,7 +30,7 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
     if (isValid.isEmail && isValid.isPassword) {
       setDisabled(false)
     }
-  }, [])
+  }, [isValid.isEmail, isValid.isPassword])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
