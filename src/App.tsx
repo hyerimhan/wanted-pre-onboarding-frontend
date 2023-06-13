@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import RedirectRoute from 'routes/RedirectRoute'
 import { createGlobalStyle } from 'styled-components'
 import { Reset } from 'styled-reset'
 
@@ -37,6 +38,7 @@ function App() {
     <>
       <Reset />
       <GlobalStyle />
+      <RedirectRoute />
       <Outlet />
     </>
   )

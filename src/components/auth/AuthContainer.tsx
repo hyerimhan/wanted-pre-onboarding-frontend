@@ -11,7 +11,7 @@ interface IAuthContainer {
 
 const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
   const navigate = useNavigate()
-  const router = useLocation().pathname
+  const location = useLocation().pathname
   const [form, setForm] = useState<IAuth>({
     email: '',
     password: '',
@@ -78,7 +78,7 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
     event.preventDefault()
     try {
       setDisabled(true)
-      if (router === '/signup') {
+      if (location === '/signup') {
         await SIGNUP({
           email: form.email,
           password: form.password,
@@ -86,7 +86,7 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
         alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.')
         navigate('/signin')
       }
-      if (router === '/signin') {
+      if (location === '/signin') {
         await SIGNIN({
           email: form.email,
           password: form.password,
@@ -96,9 +96,9 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
       }
     } catch (error: any) {
       alert(
-        router === '/signup'
+        location === '/signup'
           ? error.response.data.message
-          : router === '/signin'
+          : location === '/signin'
           ? '이메일이나 비밀번호를 다시 확인해주세요.'
           : ''
       )
