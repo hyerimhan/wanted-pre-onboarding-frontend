@@ -10,8 +10,8 @@ interface IAuthContainer {
   title: string
   data: IAuth
   errorMessage: IAuthValidError
-  disabled: boolean
   dataTestid: string
+  disabled: boolean
   onChange: React.ChangeEventHandler<HTMLInputElement>
   onSubmit: React.FormEventHandler<HTMLFormElement>
 }
@@ -20,12 +20,13 @@ const AuthContainerPresenter = ({
   title,
   data,
   errorMessage,
-  disabled,
   dataTestid,
+  disabled,
   onChange,
   onSubmit,
 }: IAuthContainer) => {
   const navigate = useNavigate()
+
   return (
     <AuthStyle>
       <Title

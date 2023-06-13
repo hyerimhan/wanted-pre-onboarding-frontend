@@ -1,8 +1,8 @@
-import { SIGNUP } from 'apis/auth'
+import { SIGNIN, SIGNUP } from 'apis/auth'
 import { IAuth, IAuthValid, IAuthValidError } from 'interfaces/auth'
 import React, { useState, useEffect } from 'react'
 import AuthContainerPresenter from './AuthContainer.presenter'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 interface IAuthContainer {
   title: string
@@ -11,6 +11,7 @@ interface IAuthContainer {
 
 const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
   const navigate = useNavigate()
+  const router = useLocation().pathname
   const [form, setForm] = useState<IAuth>({
     email: '',
     password: '',
@@ -73,18 +74,34 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     try {
       setDisabled(true)
-      await SIGNUP({
-        email: form.email,
-        password: form.password,
-      })
-      alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.')
-      navigate('/signin')
+      if (router === '/signup') {
+        await SIGNUP({
+          email: form.email,
+          password: form.password,
+        })
+        alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.')
+        navigate('/signin')
+      }
+      if (router === '/signin') {
+        await SIGNIN({
+          email: form.email,
+          password: form.password,
+        })
+        alert('환영합니다!')
+        navigate('/todo')
+      }
     } catch (error: any) {
-      alert(error.response.data.message)
+      alert(
+        router === '/signup'
+          ? error.response.data.message
+          : router === '/signin'
+          ? '이메일이나 비밀번호를 다시 확인해주세요.'
+          : ''
+      )
     } finally {
       setDisabled(false)
     }
@@ -95,11 +112,11 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
       title={title}
       data={form}
       errorMessage={errorMessage}
-      disabled={disabled}
       dataTestid={dataTestid}
+      disabled={disabled}
       onChange={handleChange}
       onSubmit={handleSubmit}
-    ></AuthContainerPresenter>
+    />
   )
 }
 
