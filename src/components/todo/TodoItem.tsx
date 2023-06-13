@@ -1,7 +1,7 @@
 import Button from 'components/common/Button'
 import { ITodo, ITodoUpdate } from 'interfaces/todo'
 import React from 'react'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 
 interface ITodoItem {
   data: ITodo

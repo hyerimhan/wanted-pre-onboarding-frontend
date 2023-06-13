@@ -5,7 +5,7 @@ import Input from 'components/common/Input'
 import TodoItem from 'components/todo/TodoItem'
 import { ITodo, ITodoUpdate } from 'interfaces/todo'
 import React, { useState, useEffect } from 'react'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 import updateTodo from 'utils/updateTodo'
 
 const Todo = () => {
