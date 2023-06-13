@@ -6,6 +6,8 @@ import { Reset } from 'styled-reset'
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   #root {

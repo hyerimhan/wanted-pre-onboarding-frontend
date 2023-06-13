@@ -1,7 +1,8 @@
+import TodoContainer from 'components/todo/TodoContainer'
 import React from 'react'
 
 const Todo = () => {
-  return <div>Todo</div>
+  return <TodoContainer />
 }
 
 export default Todo
