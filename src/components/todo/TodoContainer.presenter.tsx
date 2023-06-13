@@ -4,17 +4,41 @@ import Input from 'components/common/Input'
 import React from 'react'
 import { styled } from 'styled-components'
 import TodoItem from './TodoItem'
+import { ITodo } from 'interfaces/todo'
 
-const TodoContainerPresenter = () => {
+interface ITodoContainer {
+  todoList: ITodo[]
+  todoValue: string
+  onSubmit: React.FormEventHandler<HTMLFormElement>
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+}
+
+const TodoContainerPresenter = ({
+  todoList,
+  todoValue,
+  onSubmit,
+  onChange,
+}: ITodoContainer) => {
   return (
     <TodoStyle>
       <TodoUlStyle>
-        <TodoItem />
+        {todoList.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            data={todo}
+          />
+        ))}
       </TodoUlStyle>
       <InputAreaStyle>
-        <FormStyle>
-          <Input placeholder='할 일을 입력하세요.' />
+        <FormStyle onSubmit={onSubmit}>
+          <Input
+            dataTestid='new-todo-input'
+            placeholder='할 일을 입력하세요.'
+            value={todoValue}
+            onChange={onChange}
+          />
           <Button
+            dataTestid='new-todo-add-button'
             buttontype='primaryType'
             type='submit'
             text='추가'

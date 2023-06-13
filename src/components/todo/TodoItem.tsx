@@ -1,13 +1,22 @@
 import Button from 'components/common/Button'
+import { ITodo } from 'interfaces/todo'
 import React from 'react'
 import { styled } from 'styled-components'
 
-const TodoItem = () => {
+interface ITodoItem {
+  data: ITodo
+}
+
+const TodoItem = ({ data }: ITodoItem) => {
   return (
     <TodoItemStyle>
-      <label htmlFor=''>
-        <input type='checkbox' />
-        <span>할 일</span>
+      <label htmlFor={data.id.toString()}>
+        <input
+          type='checkbox'
+          id={data.id.toString()}
+          value={data.todo}
+        />
+        <span>{data.todo}</span>
       </label>
       <ButtonsStyle>
         <Button

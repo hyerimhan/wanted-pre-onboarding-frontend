@@ -70,11 +70,11 @@ Assignment 5
 
 Assignment 6
 
-- [ ] 리스트 페이지에 새로운 TODO를 입력할 수 있는 `input`과 추가 `button`을 만들어주세요
-  - [ ] TODO 입력 input에는 `data-testid="new-todo-input"` 속성을 부여해주세요
-  - [ ] TODO 추가 button에는 `data-testid="new-todo-add-button"` 속성을 부여해주세요
-- [ ] 추가 `button`을 클릭하면 입력 `input`의 내용이 새로운 TODO로 추가되도록 해주세요
-- [ ] TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다.
+- [x] 리스트 페이지에 새로운 TODO를 입력할 수 있는 `input`과 추가 `button`을 만들어주세요
+  - [x] TODO 입력 input에는 `data-testid="new-todo-input"` 속성을 부여해주세요
+  - [x] TODO 추가 button에는 `data-testid="new-todo-add-button"` 속성을 부여해주세요
+- [x] 추가 `button`을 클릭하면 입력 `input`의 내용이 새로운 TODO로 추가되도록 해주세요
+- [x] TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다.
 
 Assignment 7
 
