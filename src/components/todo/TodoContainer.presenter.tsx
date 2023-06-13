@@ -11,6 +11,7 @@ interface ITodoContainer {
   todoValue: string
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: React.ChangeEventHandler<HTMLInputElement>
+  onComplete?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const TodoContainerPresenter = ({
@@ -18,6 +19,7 @@ const TodoContainerPresenter = ({
   todoValue,
   onSubmit,
   onChange,
+  onComplete,
 }: ITodoContainer) => {
   return (
     <TodoStyle>
@@ -26,6 +28,7 @@ const TodoContainerPresenter = ({
           <TodoItem
             key={todo.id}
             data={todo}
+            onComplete={onComplete}
           />
         ))}
       </TodoUlStyle>

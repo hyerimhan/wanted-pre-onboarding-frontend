@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TodoContainerPresenter from './TodoContainer.presenter'
 import { ITodo } from 'interfaces/todo'
 import { CREATETODO, GETTODO } from 'apis/todo'
+import updateTodo from 'utils/updateTodo'
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState<ITodo[]>([])
@@ -30,6 +31,7 @@ const TodoContainer = () => {
       todoValue={todoText}
       onSubmit={handleSubmit}
       onChange={(e) => setTodoText(e.target.value)}
+      onComplete={(e) => updateTodo({ data: todos, setData: setTodos, e })}
     />
   )
 }

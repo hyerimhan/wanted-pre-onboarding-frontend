@@ -5,9 +5,10 @@ import { styled } from 'styled-components'
 
 interface ITodoItem {
   data: ITodo
+  onComplete?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TodoItem = ({ data }: ITodoItem) => {
+const TodoItem = ({ data, onComplete }: ITodoItem) => {
   return (
     <TodoItemStyle>
       <label htmlFor={data.id.toString()}>
@@ -15,6 +16,8 @@ const TodoItem = ({ data }: ITodoItem) => {
           type='checkbox'
           id={data.id.toString()}
           value={data.todo}
+          checked={data.isCompleted}
+          onChange={onComplete}
         />
         <span>{data.todo}</span>
       </label>
